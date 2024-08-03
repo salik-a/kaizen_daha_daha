@@ -30,6 +30,7 @@ import { customFontsToLoad } from "./theme"
 import Config from "./config"
 import { GestureHandlerRootView } from "react-native-gesture-handler"
 import { ViewStyle } from "react-native"
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 
 export const NAVIGATION_PERSISTENCE_KEY = "NAVIGATION_STATE"
 
@@ -42,7 +43,6 @@ const config = {
         MainScreen: {
           path: "showroom/:queryIndex?/:itemIndex?",
         },
-       
       },
     },
   },
@@ -64,6 +64,7 @@ function App(props: AppProps) {
     onNavigationStateChange,
     isRestored: isNavigationStateRestored,
   } = useNavigationPersistence(storage, NAVIGATION_PERSISTENCE_KEY)
+  const queryClient = new QueryClient()
 
   const [areFontsLoaded, fontLoadError] = useFonts(customFontsToLoad)
 
@@ -97,11 +98,13 @@ function App(props: AppProps) {
     <SafeAreaProvider initialMetrics={initialWindowMetrics}>
       <ErrorBoundary catchErrors={Config.catchErrors}>
         <GestureHandlerRootView style={$container}>
-          <AppNavigator
-            linking={linking}
-            initialState={initialNavigationState}
-            onStateChange={onNavigationStateChange}
-          />
+          <QueryClientProvider client={queryClient}>
+            <AppNavigator
+              linking={linking}
+              initialState={initialNavigationState}
+              onStateChange={onNavigationStateChange}
+            />
+          </QueryClientProvider>
         </GestureHandlerRootView>
       </ErrorBoundary>
     </SafeAreaProvider>

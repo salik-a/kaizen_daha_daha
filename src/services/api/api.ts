@@ -1,38 +1,16 @@
-/**
- * This Api class lets you define an API endpoint and methods to request
- * data and process it.
- *
- * See the [Backend API Integration](https://docs.infinite.red/ignite-cli/boilerplate/app/services/#backend-api-integration)
- * documentation for more details.
- */
-import {
-  ApisauceInstance,
-  create,
-} from "apisauce"
+import { ApisauceInstance, create, ApiResponse } from "apisauce"
 import Config from "../../config"
-import type {
-  ApiConfig,
-} from "./api.types"
+import type { ApiConfig, ITag } from "./api.types"
 
-/**
- * Configuring the apisauce instance.
- */
 export const DEFAULT_API_CONFIG: ApiConfig = {
   url: Config.API_URL,
   timeout: 10000,
 }
 
-/**
- * Manages all requests to the API. You can use this class to build out
- * various requests that you need to call from your backend API.
- */
 export class Api {
   apisauce: ApisauceInstance
   config: ApiConfig
 
-  /**
-   * Set up our API instance. Keep this lightweight!
-   */
   constructor(config: ApiConfig = DEFAULT_API_CONFIG) {
     this.config = config
     this.apisauce = create({
@@ -40,11 +18,23 @@ export class Api {
       timeout: this.config.timeout,
       headers: {
         Accept: "application/json",
+        "X-Country-Id": "TR",
+        "X-Language-Id": "TR",
       },
     })
   }
 
+  async getTagsList(): Promise<ITag[]> {
+    const response: ApiResponse<ITag[]> = await this.apisauce.get("/tags/list")
+
+    if (!response.ok || !response.data) {
+      throw new Error(response.problem || "API Error")
+    }
+
+    return response.data
+  }
+
+  
 }
 
-// Singleton instance of the API for convenience
 export const api = new Api()
