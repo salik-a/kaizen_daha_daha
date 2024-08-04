@@ -32,7 +32,7 @@ export type AppStackParamList = {
   // 🔥 Your screens go here
   Main: undefined
   MainScreen: undefined
-  DetailScreen: undefined
+  DetailScreen: { Id: number }
   PortalScreen: undefined
   WalletScreen: undefined
   // IGNITE_GENERATOR_ANCHOR_APP_STACK_PARAM_LIST
