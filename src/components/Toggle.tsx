@@ -1,8 +1,6 @@
 import React, { ComponentType, FC, useMemo } from "react"
 import {
   GestureResponderEvent,
-  Image,
-  ImageStyle,
   Platform,
   StyleProp,
   SwitchProps,
@@ -24,6 +22,7 @@ import { colors, spacing } from "../theme"
 import { iconRegistry, IconTypes } from "./Icon"
 import { Text, TextProps } from "./Text"
 import { isRTL } from "src/i18n"
+import FastImage, { ImageStyle } from "react-native-fast-image"
 
 type Variants = "checkbox" | "switch" | "radio"
 
@@ -314,7 +313,7 @@ function Checkbox(props: ToggleInputProps) {
           useAnimatedStyle(() => ({ opacity: withTiming(on ? 1 : 0) }), [on]),
         ]}
       >
-        <Image
+        <FastImage
           source={checkboxIcon ? iconRegistry[checkboxIcon] : iconRegistry.check}
           style={[
             $checkboxDetail,
@@ -543,7 +542,7 @@ function SwitchAccessibilityLabel(props: ToggleInputProps & { role: "on" | "off"
       )}
 
       {switchAccessibilityMode === "icon" && shouldLabelBeVisible && (
-        <Image
+        <FastImage
           style={[$switchAccessibilityIcon, { tintColor: color }]}
           source={role === "off" ? iconRegistry.hidden : iconRegistry.view}
         />

@@ -5,7 +5,6 @@ import {
   ViewStyle,
   Image,
   TextStyle,
-  ImageStyle,
   Dimensions,
   ScrollView,
   Pressable,
@@ -16,6 +15,7 @@ import { useQuery } from "@tanstack/react-query"
 import { api, IPromotionDetail } from "../services/api"
 import { colors, spacing } from "src/theme"
 import { translate } from "../i18n"
+import FastImage, { ImageStyle } from "react-native-fast-image"
 
 const { height, width } = Dimensions.get("window")
 
@@ -71,16 +71,16 @@ const DetailScreen: FC<DetailScreenProps> = ({ route }) => {
         <>
           <ScrollView style={{ height: height }}>
             <View style={$topContainer}>
-              <Image
+              <FastImage
                 source={{ uri: promotionDetailData.ImageUrl }}
-                resizeMode="cover"
-                style={[$image]}
+                resizeMode={FastImage.resizeMode.cover}
+                style={$image}
               />
               <View style={$topInner}>
                 <View style={$logoImageContainer}>
-                  <Image
+                  <FastImage
                     source={{ uri: promotionDetailData.BrandIconUrl }}
-                    resizeMode="contain"
+                    resizeMode={FastImage.resizeMode.contain}
                     style={$brandIconImage}
                   />
                 </View>

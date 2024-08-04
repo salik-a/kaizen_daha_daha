@@ -1,15 +1,7 @@
-import {
-  Text,
-  View,
-  Dimensions,
-  Image,
-  Pressable,
-  ViewStyle,
-  ImageStyle,
-  TextStyle,
-} from "react-native"
+import { Text, View, Dimensions, Pressable, ViewStyle, TextStyle } from "react-native"
 import React from "react"
 import { colors } from "src/theme"
+import FastImage, { ImageStyle } from "react-native-fast-image"
 const { width, height } = Dimensions.get("screen")
 
 const SlideItem = ({ item, onPress }: any) => {
@@ -20,12 +12,16 @@ const SlideItem = ({ item, onPress }: any) => {
   return (
     <Pressable style={$container} onPress={onPress}>
       <View style={$topContainer}>
-        <Image source={{ uri: item.ImageUrl }} resizeMode="cover" style={[$image]} />
+        <FastImage
+          source={{ uri: item.ImageUrl }}
+          resizeMode={FastImage.resizeMode.cover}
+          style={$image}
+        />
         <View style={$topInner}>
           <View style={$logoImageContainer}>
-            <Image
+            <FastImage
               source={{ uri: item.BrandIconUrl }}
-              resizeMode="contain"
+              resizeMode={FastImage.resizeMode.contain}
               style={$brandIconImage}
             />
           </View>
@@ -70,7 +66,7 @@ const $topContainer: ViewStyle = {
 
 const $topInner: ViewStyle = {
   position: "absolute",
-  bottom: -18,
+  bottom: 0,
   flexDirection: "row",
   alignItems: "center",
   justifyContent: "space-between",
@@ -120,6 +116,7 @@ const $remainingTextContainer: ViewStyle = {
   backgroundColor: colors.black,
   paddingHorizontal: 10,
   paddingVertical: 8,
+  marginTop: 15,
 }
 
 const $remainingText: TextStyle = {

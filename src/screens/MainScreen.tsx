@@ -75,7 +75,15 @@ const MainScreen: FC<MainScreenProps> = () => {
       {tagListData && (
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           {tagListData?.map((tag) => {
-            return <TagButton IconUrl={tag.IconUrl} Id={tag.Id} Name={tag.Name} Rank={tag.Rank} />
+            return (
+              <TagButton
+                key={tag.Id}
+                IconUrl={tag.IconUrl}
+                Id={tag.Id}
+                Name={tag.Name}
+                Rank={tag.Rank}
+              />
+            )
           })}
         </ScrollView>
       )}

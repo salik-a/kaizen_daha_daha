@@ -1,8 +1,6 @@
 import * as React from "react"
 import { ComponentType } from "react"
 import {
-  Image,
-  ImageStyle,
   StyleProp,
   TouchableOpacity,
   TouchableOpacityProps,
@@ -10,6 +8,7 @@ import {
   ViewProps,
   ViewStyle,
 } from "react-native"
+import FastImage, { ImageStyle } from "react-native-fast-image"
 
 export type IconTypes = keyof typeof iconRegistry
 
@@ -80,7 +79,11 @@ export function Icon(props: IconProps) {
       {...WrapperProps}
       style={$containerStyleOverride}
     >
-      <Image style={$imageStyle} source={iconRegistry[icon]} />
+      <FastImage
+        style={$imageStyle}
+        source={iconRegistry[icon]}
+        resizeMode={FastImage.resizeMode.contain}
+      />
     </Wrapper>
   )
 }

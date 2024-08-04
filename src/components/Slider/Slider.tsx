@@ -30,7 +30,6 @@ export const Slider = ({ data }: any) => {
   }
 
   const handleOnViewableItemsChanged = useRef(({ viewableItems }: any) => {
-    // console.log('viewableItems', viewableItems);
     setIndex(viewableItems[0]?.index)
   }).current
 
@@ -45,6 +44,7 @@ export const Slider = ({ data }: any) => {
         renderItem={({ item }) => (
           <SlideItem item={item} onPress={() => handlePromotionPress(item.Id)} />
         )}
+        keyExtractor={(item) => item?.Id?.toString()}
         horizontal
         pagingEnabled
         snapToAlignment="center"

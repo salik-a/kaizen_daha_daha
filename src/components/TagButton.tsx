@@ -1,8 +1,9 @@
 import * as React from "react"
-import { Pressable, StyleProp, TextStyle, ViewStyle, Image, ImageStyle } from "react-native"
+import { Pressable, StyleProp, TextStyle, ViewStyle } from "react-native"
 import { colors, typography } from "src/theme"
 import { ITag } from "src/services/api"
 import { Text } from "./Text"
+import FastImage, { ImageStyle } from "react-native-fast-image"
 
 export interface TagButtonProps extends ITag {
   /**
@@ -21,7 +22,7 @@ export const TagButton = (props: TagButtonProps) => {
 
   return (
     <Pressable style={$styles} key={Id.toString()} onPress={onPress}>
-      <Image source={{ uri: IconUrl }} style={$imageStyle} />
+      <FastImage source={{ uri: IconUrl }} style={$imageStyle} />
       <Text style={$textStyle}>{Name}</Text>
     </Pressable>
   )
