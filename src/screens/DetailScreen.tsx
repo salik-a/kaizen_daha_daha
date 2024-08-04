@@ -3,11 +3,11 @@ import {
   ActivityIndicator,
   View,
   ViewStyle,
-  Image,
   TextStyle,
   Dimensions,
   ScrollView,
   Pressable,
+  Platform,
 } from "react-native"
 import { AppStackScreenProps, goBack } from "src/navigators"
 import { Button, Icon, Screen, Text } from "src/components"
@@ -203,7 +203,7 @@ const $buttonStyles: ViewStyle = {
   height: 50,
   alignSelf: "center",
   position: "absolute",
-  bottom: 75,
+  bottom: Platform.OS === "ios" ? 120 : 75,
 }
 
 export default DetailScreen

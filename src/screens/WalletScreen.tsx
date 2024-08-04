@@ -1,4 +1,4 @@
-import React, { FC } from "react"
+import React, { FC, useMemo } from "react"
 import { ActivityIndicator, ScrollView, TextStyle, View, ViewStyle } from "react-native"
 import { AppStackScreenProps } from "src/navigators"
 import { Button, Icon, Screen, Text, TagButton, Slider } from "src/components"
@@ -29,6 +29,19 @@ const WalletScreen: FC<WalletScreenProps> = () => {
     queryFn: () => api.getPromotions(),
     enabled: true,
   })
+
+  const newTagList = useMemo(() => {
+    const searchItem = {
+      IconUrl: "",
+      Id: -1,
+      Name: "Fırsat Bul",
+      Rank: -1,
+    }
+    if (tagListData) {
+      return [searchItem, ...tagListData]
+    }
+    return [searchItem]
+  }, [tagListData])
 
   if (tagListLoading || promotionsLoading) {
     return (
@@ -72,10 +85,18 @@ const WalletScreen: FC<WalletScreenProps> = () => {
           </View>
         </View>
       </View>
-      {tagListData && (
+      {newTagList && (
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          {tagListData?.map((tag) => {
-            return <TagButton IconUrl={tag.IconUrl} Id={tag.Id} Name={tag.Name} Rank={tag.Rank} />
+          {newTagList?.map((tag) => {
+            return (
+              <TagButton
+                key={tag.Id}
+                IconUrl={tag.IconUrl}
+                Id={tag.Id}
+                Name={tag.Name}
+                Rank={tag.Rank}
+              />
+            )
           })}
         </ScrollView>
       )}
@@ -86,7 +107,7 @@ const WalletScreen: FC<WalletScreenProps> = () => {
 
 const $root: ViewStyle = {
   flex: 1,
-  backgroundColor: colors.palette.neutral200,
+  backgroundColor: colors.palette.neutral100,
 }
 
 const $container: ViewStyle = {
