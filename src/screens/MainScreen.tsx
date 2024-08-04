@@ -1,7 +1,7 @@
 import React, { FC } from "react"
 import { ActivityIndicator, ScrollView, TextStyle, View, ViewStyle } from "react-native"
 import { AppStackScreenProps } from "src/navigators"
-import { Button, Icon, Screen, Text, TagButton } from "src/components"
+import { Button, Icon, Screen, Text, TagButton, Slider } from "src/components"
 import { useQuery } from "@tanstack/react-query"
 import { api, IPromotions, ITag } from "../services/api"
 import { colors, spacing } from "../theme"
@@ -79,13 +79,14 @@ const MainScreen: FC<MainScreenProps> = ({ navigation, route }) => {
           })}
         </ScrollView>
       )}
+      <Slider data={promotionsData} />
     </Screen>
   )
 }
 
 const $root: ViewStyle = {
   flex: 1,
-  backgroundColor: colors.white,
+  backgroundColor: colors.palette.neutral200,
 }
 
 const $container: ViewStyle = {

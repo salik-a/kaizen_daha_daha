@@ -30,7 +30,7 @@ export const TagButton = (props: TagButtonProps) => {
 const $container: ViewStyle = {
   backgroundColor: colors.white,
   borderWidth: 1,
-  borderColor: colors.palette.overlay20,
+  borderColor: colors.white,
   borderRadius: 8,
   width: 130,
   height: 45,
@@ -47,7 +47,7 @@ const $textStyle: TextStyle = {
 }
 
 const $imageStyle: ImageStyle = {
-  height: 20,
-  width: 20,
-  borderRadius: 10,
+  height: 25,
+  width: 25,
+  borderRadius: 50,
 }
