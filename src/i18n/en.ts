@@ -20,6 +20,9 @@ const en = {
     discover: "DISCOVER",
     wallet: "DAHA WALLET",
   },
+  screens: {
+    logIn: "Login",
+  },
 }
 
 export default en

@@ -21,6 +21,9 @@ const tr = {
     discover: "KEŞFET",
     wallet: "DAHA CÜZDAN",
   },
+  screens: {
+    logIn: "Giriş Yap",
+  },
 }
 
 export default tr

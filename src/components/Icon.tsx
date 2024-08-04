@@ -102,6 +102,8 @@ export const iconRegistry = {
   star: require("../../assets/icons/star.png"),
   discover: require("../../assets/icons/discover.png"),
   portal: require("../../assets/icons/portal.png"),
+  daha: require("../../assets/icons/daha.png"),
+  profile: require("../../assets/icons/profile.png"),
 }
 
 const $imageStyleBase: ImageStyle = {
