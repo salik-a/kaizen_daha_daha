@@ -5,10 +5,10 @@ import { TextStyle, TouchableOpacity, View, ViewStyle, Text } from "react-native
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { Icon } from "../components"
 import { translate } from "../i18n"
-import { MainScreen, DetailScreen, PortalScreen, WalletScreen } from "../screens"
+import { MainScreen, PortalScreen, WalletScreen } from "../screens"
 
 import { colors, spacing, typography } from "../theme"
-import { createNativeStackNavigator, NativeStackScreenProps } from "@react-navigation/native-stack"
+import { AppStackParamList, AppStackScreenProps } from "./AppNavigator"
 
 export type TabBarParamList = {
   MainScreen: undefined
@@ -27,33 +27,6 @@ export type TabBarScreenProps<T extends keyof TabBarParamList> = CompositeScreen
   BottomTabScreenProps<TabBarParamList, T>,
   AppStackScreenProps<keyof AppStackParamList>
 >
-
-export type AppStackParamList = {
-  // 🔥 Your screens go here
-  Main: undefined
-  MainScreen: undefined
-  DetailScreen: { Id: number }
-  PortalScreen: undefined
-  WalletScreen: undefined
-  // IGNITE_GENERATOR_ANCHOR_APP_STACK_PARAM_LIST
-}
-
-export type AppStackScreenProps<T extends keyof AppStackParamList> = NativeStackScreenProps<
-  AppStackParamList,
-  T
->
-
-// Documentation: https://reactnavigation.org/docs/stack-navigator/
-const Stack = createNativeStackNavigator<AppStackParamList>()
-
-const MainStack = () => {
-  return (
-    <Stack.Navigator screenOptions={{ headerShown: false, navigationBarColor: colors.background }}>
-      <Stack.Screen name="MainScreen" component={MainScreen} />
-      <Stack.Screen name="DetailScreen" component={DetailScreen} />
-    </Stack.Navigator>
-  )
-}
 
 const CustomTabBar = ({ state, descriptors, navigation }: any) => {
   return (
@@ -176,8 +149,8 @@ export function TabBarNavigator() {
       tabBar={(props) => <CustomTabBar {...props} />}
     >
       <Tab.Screen
-        name="Main"
-        component={MainStack}
+        name="MainScreen"
+        component={MainScreen}
         options={{
           tabBarLabel: translate("tabBarNavigator.discover"),
           tabBarIcon: ({ focused }) => (

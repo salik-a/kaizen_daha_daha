@@ -11,6 +11,9 @@ import { useColorScheme } from "react-native"
 import Config from "../config"
 import { navigationRef, useBackButtonHandler } from "./navigationUtilities"
 import { TabBarNavigator } from "./TabNavigator"
+import { createNativeStackNavigator } from "@react-navigation/native-stack"
+import { DetailScreen } from "src/screens"
+import { colors } from "src/theme"
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -25,14 +28,38 @@ import { TabBarNavigator } from "./TabNavigator"
  *   https://reactnavigation.org/docs/typescript#type-checking-the-navigator
  *   https://reactnavigation.org/docs/typescript/#organizing-types
  */
+export type AppStackParamList = {
+  // 🔥 Your screens go here
+  Main: undefined
+  MainScreen: undefined
+  DetailScreen: { Id: number }
+  PortalScreen: undefined
+  WalletScreen: undefined
+  // IGNITE_GENERATOR_ANCHOR_APP_STACK_PARAM_LIST
+}
 
+export type AppStackScreenProps<T extends keyof AppStackParamList> = NativeStackScreenProps<
+  AppStackParamList,
+  T
+>
+
+// Documentation: https://reactnavigation.org/docs/stack-navigator/
+const Stack = createNativeStackNavigator<AppStackParamList>()
+
+const MainStack = () => {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false, navigationBarColor: colors.background }}>
+      <Stack.Screen name="Main" component={TabBarNavigator} />
+      <Stack.Screen name="DetailScreen" component={DetailScreen} />
+    </Stack.Navigator>
+  )
+}
 
 /**
  * This is a list of all the route names that will exit the app if the back button
  * is pressed while in that screen. Only affects Android.
  */
 const exitRoutes = Config.exitRoutes
-
 
 export interface NavigationProps
   extends Partial<React.ComponentProps<typeof NavigationContainer>> {}
@@ -48,7 +75,7 @@ export const AppNavigator = observer(function AppNavigator(props: NavigationProp
       theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
       {...props}
     >
-      <TabBarNavigator />
+      <MainStack />
     </NavigationContainer>
   )
 })
