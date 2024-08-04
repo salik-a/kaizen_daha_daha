@@ -84,4 +84,5 @@ export const colors = {
   black: "#000",
   white: "#fff",
   buttonColor: "#F40000",
+  grayScale: "#1D1E1C",
 }

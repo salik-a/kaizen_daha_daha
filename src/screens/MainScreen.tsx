@@ -9,7 +9,7 @@ import { translate } from "../i18n"
 
 interface MainScreenProps extends AppStackScreenProps<"MainScreen"> {}
 
-const MainScreen: FC<MainScreenProps> = ({ navigation, route }) => {
+const MainScreen: FC<MainScreenProps> = () => {
   const {
     data: tagListData,
     error: tagListError,
