@@ -1,12 +1,36 @@
 
+## Quick Start
+
+Eğer bilgisayarınızda React-Native kurulumları tamamlanmamışsa şuradan önce kurulumları tamamlayınız: 
+https://reactnative.dev/docs/set-up-your-environment
+
+Daha sonra uygulama içerisindeki indirmeler için:
+
+`yarn install && cd ios && pod install && cd ..`
+
+Uygulamayı android üzerinden ayağa kaldırmak için:
+
+`yarn android`
+
+iOS üzerinden ayağa kaldırmak için:
+
+`yarn ios`
+
+komutlarını çalıştırabilirsiniz.
+
+Uygulamaya ait ekran görüntüleri:
+Anasayfa:
+![Screenshoot2](./assets/screenshots/app_ss_2.png)
+
+Detay Sayfası:
+
+![Screenshoot1](./assets/screenshots/app_ss_1.png)
 Currently includes:
 
 - React Native
 - React Navigation
 - TypeScript
 - And more!
-
-## Quick Start
 
 Project's structure will look similar to this:
 
@@ -135,7 +159,3 @@ const MyComponent = () => {
 ### ./test directory
 
 This directory will hold your Jest configs and mocks.
-
-## Running Maestro end-to-end tests
-
-<!-- Follow our [Maestro Setup](https://ignitecookbook.com/docs/recipes/MaestroSetup) recipe from the [Ignite Cookbook](https://ignitecookbook.com/)! -->
