@@ -11,7 +11,7 @@ import { useColorScheme } from "react-native"
 import Config from "../config"
 import { navigationRef, useBackButtonHandler } from "./navigationUtilities"
 import { TabBarNavigator } from "./TabNavigator"
-import { createNativeStackNavigator } from "@react-navigation/native-stack"
+import { createNativeStackNavigator, NativeStackScreenProps } from "@react-navigation/native-stack"
 import { DetailScreen } from "src/screens"
 import { colors } from "src/theme"
 
@@ -35,7 +35,6 @@ export type AppStackParamList = {
   DetailScreen: { Id: number }
   PortalScreen: undefined
   WalletScreen: undefined
-  // IGNITE_GENERATOR_ANCHOR_APP_STACK_PARAM_LIST
 }
 
 export type AppStackScreenProps<T extends keyof AppStackParamList> = NativeStackScreenProps<

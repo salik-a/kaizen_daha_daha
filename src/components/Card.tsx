@@ -119,7 +119,7 @@ interface CardProps extends TouchableOpacityProps {
 /**
  * Cards are useful for displaying related information in a contained way.
  * If a ListItem displays content horizontally, a Card can be used to display content vertically.
- * @see [Documentation and Examples]{@link https://docs.infinite.red/ignite-cli/boilerplate/components/Card/}
+ * [Documentation and Examples]{https://docs.infinite.red/ignite-cli/boilerplate/components/Card/}
  * @param {CardProps} props - The props for the `Card` component.
  * @returns {JSX.Element} The rendered `Card` component.
  */

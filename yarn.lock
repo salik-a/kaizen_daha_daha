@@ -2438,9 +2438,9 @@
     component-type "^1.2.1"
     join-component "^1.1.0"
 
-"@shopify/flash-list@^1.6.4":
+"@shopify/flash-list@^1.7.0":
   version "1.7.0"
-  resolved "https://registry.npmjs.org/@shopify/flash-list/-/flash-list-1.7.0.tgz"
+  resolved "https://registry.yarnpkg.com/@shopify/flash-list/-/flash-list-1.7.0.tgz#a18fa09ccd521349e60f176eaf190ff30d24d597"
   integrity sha512-Uys8mWTb0Y34Ts1hD97KrVFbFH9oY7qbj/u1oSrAS5PJAackDFbndUEVuTYyXSyWxHY0sRutF5HgS1yNdhj+0A==
   dependencies:
     recyclerlistview "4.2.1"
@@ -8142,7 +8142,7 @@ recast@^0.21.0:
 
 recyclerlistview@4.2.1:
   version "4.2.1"
-  resolved "https://registry.npmjs.org/recyclerlistview/-/recyclerlistview-4.2.1.tgz"
+  resolved "https://registry.yarnpkg.com/recyclerlistview/-/recyclerlistview-4.2.1.tgz#4537a0959400cdce1df1f38d26aab823786e9b13"
   integrity sha512-NtVYjofwgUCt1rEsTp6jHQg/47TWjnO92TU2kTVgJ9wsc/ely4HnizHHa+f/dI7qaw4+zcSogElrLjhMltN2/g==
   dependencies:
     lodash.debounce "4.0.8"
@@ -9202,7 +9202,7 @@ ts-node@^10.9.2:
 
 ts-object-utils@0.0.5:
   version "0.0.5"
-  resolved "https://registry.npmjs.org/ts-object-utils/-/ts-object-utils-0.0.5.tgz"
+  resolved "https://registry.yarnpkg.com/ts-object-utils/-/ts-object-utils-0.0.5.tgz#95361cdecd7e52167cfc5e634c76345e90a26077"
   integrity sha512-iV0GvHqOmilbIKJsfyfJY9/dNHCs969z3so90dQWsO1eMMozvTpnB1MEaUbb3FYtZTGjv5sIy/xmslEz0Rg2TA==
 
 tsconfig-paths@^3.14.1:

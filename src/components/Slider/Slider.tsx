@@ -3,8 +3,9 @@ import React, { useRef, useState } from "react"
 import SlideItem from "./SlideItem"
 import Pagination from "./Pagination"
 import { navigate } from "src/navigators"
+import { IPromotions } from "src/services/api"
 
-export const Slider = ({ data }: any) => {
+export const Slider = ({ data }: { data: IPromotions }) => {
   const [index, setIndex] = useState(0)
   const scrollX = useRef(new Animated.Value(0)).current
 
@@ -41,10 +42,10 @@ export const Slider = ({ data }: any) => {
     <View style={$container}>
       <FlatList
         data={data}
-        renderItem={({ item }) => (
+        renderItem={({ item }: { item: IPromotions }) => (
           <SlideItem item={item} onPress={() => handlePromotionPress(item.Id)} />
         )}
-        keyExtractor={(item) => item?.Id?.toString()}
+        keyExtractor={(item: IPromotions) => item?.Id?.toString()}
         horizontal
         pagingEnabled
         snapToAlignment="center"

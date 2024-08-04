@@ -84,7 +84,7 @@ export interface ButtonProps extends PressableProps {
 /**
  * A component that allows users to take actions and make choices.
  * Wraps the Text component with a Pressable component.
- * @see [Documentation and Examples]{@link https://docs.infinite.red/ignite-cli/boilerplate/components/Button/}
+ *  [Documentation and Examples]{ https://docs.infinite.red/ignite-cli/boilerplate/components/Button/}
  * @param {ButtonProps} props - The props for the `Button` component.
  * @returns {JSX.Element} The rendered `Button` component.
  * @example
