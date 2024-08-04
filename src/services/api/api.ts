@@ -1,6 +1,6 @@
 import { ApisauceInstance, create, ApiResponse } from "apisauce"
 import Config from "../../config"
-import type { ApiConfig, ITag } from "./api.types"
+import type { ApiConfig, IPromotionDetail, IPromotions, ITag } from "./api.types"
 
 export const DEFAULT_API_CONFIG: ApiConfig = {
   url: Config.API_URL,
@@ -34,7 +34,27 @@ export class Api {
     return response.data
   }
 
-  
+  async getPromotions(): Promise<IPromotions[]> {
+    const response: ApiResponse<IPromotions[]> = await this.apisauce.get(
+      "/promotions/list?Channel=PWA",
+    )
+
+    if (!response.ok || !response.data) {
+      throw new Error(response.problem || "API Error")
+    }
+
+    return response.data
+  }
+
+  async getPromotionDetail(Id: number): Promise<IPromotionDetail> {
+    const response: ApiResponse<IPromotionDetail> = await api.apisauce.get(`/promotions?Id=${Id}`)
+
+    if (!response.ok || !response.data) {
+      throw new Error(response.problem || "API Error")
+    }
+
+    return response.data
+  }
 }
 
 export const api = new Api()

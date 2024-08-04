@@ -16,3 +16,38 @@ export interface ITag {
   Name: string
   Rank: number
 }
+
+export interface IPromotions {
+  BrandIconColor: string
+  BrandIconUrl: string
+  BrandPromotionCardParticipationText: string
+  CardType: string
+  ExternalLoginGate: any
+  ExternalRedirectType: any
+  ExternalType: any
+  ExternalUrl: any
+  ExternalWebviewType: any
+  Id: number
+  ImageUrl: string
+  IsLuckyDay: boolean
+  ListButtonText: string
+  ListButtonTextBackGroudColor: string
+  LuckyDayBackgroundColor: string
+  LuckyDayText: string
+  LuckyDayTextColor: string
+  PromotionCardColor: string
+  RemainingText: string
+  ScenarioType: string
+  SeoName: string
+  Title: string
+  Unavailable: boolean
+  Unvisible: boolean
+}
+
+export interface IPromotionDetail {
+  IconUrl: string
+  Id: number
+  Name: string
+  Rank: number
+}
+
