@@ -65,7 +65,7 @@ const DetailScreen: FC<DetailScreenProps> = ({ route }) => {
   return (
     <Screen style={$root} preset="fixed" safeAreaEdges={["top"]} contentContainerStyle={$container}>
       <Pressable style={$backButton} onPress={() => goBack()}>
-        <Icon icon="back" color={colors.white} size={30} />
+        <Icon icon="backButton" color={colors.white} size={30} />
       </Pressable>
       {promotionDetailData && (
         <>

@@ -1,4 +1,4 @@
-import React, { FC } from "react"
+import React, { FC, useMemo } from "react"
 import { ActivityIndicator, ScrollView, TextStyle, View, ViewStyle } from "react-native"
 import { AppStackScreenProps } from "src/navigators"
 import { Button, Icon, Screen, Text, TagButton, Slider } from "src/components"
@@ -29,6 +29,19 @@ const MainScreen: FC<MainScreenProps> = () => {
     queryFn: () => api.getPromotions(),
     enabled: true,
   })
+
+  const newTagList = useMemo(() => {
+    const searchItem = {
+      IconUrl: "",
+      Id: -1,
+      Name: "Fırsat Bul",
+      Rank: -1,
+    }
+    if (tagListData) {
+      return [searchItem, ...tagListData]
+    }
+    return [searchItem]
+  }, [tagListData])
 
   if (tagListLoading || promotionsLoading) {
     return (
@@ -72,9 +85,9 @@ const MainScreen: FC<MainScreenProps> = () => {
           </View>
         </View>
       </View>
-      {tagListData && (
+      {newTagList && (
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          {tagListData?.map((tag) => {
+          {newTagList?.map((tag) => {
             return (
               <TagButton
                 key={tag.Id}
@@ -94,7 +107,7 @@ const MainScreen: FC<MainScreenProps> = () => {
 
 const $root: ViewStyle = {
   flex: 1,
-  backgroundColor: colors.palette.neutral200,
+  backgroundColor: colors.palette.neutral100,
 }
 
 const $container: ViewStyle = {

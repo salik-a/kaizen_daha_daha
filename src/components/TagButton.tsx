@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Pressable, StyleProp, TextStyle, ViewStyle } from "react-native"
+import { Pressable, StyleProp, TextStyle, ViewStyle, Image } from "react-native"
 import { colors, typography } from "src/theme"
 import { ITag } from "src/services/api"
 import { Text } from "./Text"
@@ -19,10 +19,11 @@ export interface TagButtonProps extends ITag {
 export const TagButton = (props: TagButtonProps) => {
   const { style, onPress, IconUrl, Id, Name, Rank } = props
   const $styles = [$container, style]
-
+  const ImageUrl =
+    Id === -1 ? Image.resolveAssetSource(require("../../assets/icons/search.png")).uri : IconUrl
   return (
     <Pressable style={$styles} key={Id.toString()} onPress={onPress}>
-      <FastImage source={{ uri: IconUrl }} style={$imageStyle} />
+      <FastImage source={{ uri: ImageUrl }} style={$imageStyle} />
       <Text style={$textStyle}>{Name}</Text>
     </Pressable>
   )
@@ -31,7 +32,7 @@ export const TagButton = (props: TagButtonProps) => {
 const $container: ViewStyle = {
   backgroundColor: colors.white,
   borderWidth: 1,
-  borderColor: colors.white,
+  borderColor: colors.palette.neutral300,
   borderRadius: 8,
   width: 130,
   height: 45,
