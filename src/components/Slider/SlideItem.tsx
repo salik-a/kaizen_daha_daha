@@ -38,14 +38,15 @@ const SlideItem = ({ item, onPress }: any) => {
         <Text style={$title}>{plainText}</Text>
         <Text style={[$daha, { color: item.PromotionCardColor }]}>Daha Daha</Text>
       </View>
+      <View style={[$bottom, { backgroundColor: item.PromotionCardColor }]} />
     </Pressable>
   )
 }
 
 const $container: ViewStyle = {
-  width: width - 40,
+  width: width - 80,
   height: height * 0.5,
-  marginHorizontal: 20,
+  marginHorizontal: 10,
   marginVertical: 20,
   alignItems: "center",
   shadowColor: "#000",
@@ -62,8 +63,9 @@ const $container: ViewStyle = {
 
 const $topContainer: ViewStyle = {
   flex: 1,
-  width: "90%",
+  width: "100%",
   alignItems: "center",
+  padding: 5,
 }
 
 const $topInner: ViewStyle = {
@@ -97,6 +99,11 @@ const $brandIconImage: ImageStyle = {
 const $content: ViewStyle = {
   flex: 0.5,
   alignItems: "center",
+  zIndex: 100,
+  width: "100%",
+  backgroundColor: "white",
+  borderBottomRightRadius: 15,
+  borderBottomLeftRadius: 15,
 }
 
 const $title: TextStyle = {
@@ -105,6 +112,7 @@ const $title: TextStyle = {
   color: "#333",
   marginTop: 15,
   paddingHorizontal: 4,
+  flex: 1,
 }
 
 const $remainingTextContainer: ViewStyle = {
@@ -120,9 +128,20 @@ const $remainingText: TextStyle = {
 }
 
 const $daha: TextStyle = {
-  fontSize: 24,
+  fontSize: 18,
   fontWeight: "bold",
-  marginTop: 10,
+  marginBottom: 10,
+}
+
+const $bottom: ViewStyle = {
+  width: "100%",
+  height: 40,
+
+  position: "absolute",
+  bottom: -12,
+  borderRadius: 25,
+  zIndex: -1,
+  transform: [{ rotate: "2deg" }],
 }
 
 export default SlideItem

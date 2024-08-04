@@ -34,7 +34,7 @@ const Pagination = ({ data, scrollX, index }: any) => {
 
 const $container: ViewStyle = {
   position: "absolute",
-  bottom: -10,
+  bottom: -20,
   flexDirection: "row",
   width: "100%",
   alignItems: "center",
