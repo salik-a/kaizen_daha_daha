@@ -1,17 +1,20 @@
 import { BottomTabScreenProps, createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import { CompositeScreenProps } from "@react-navigation/native"
 import React from "react"
-import { TextStyle, ViewStyle } from "react-native"
+import { TextStyle, TouchableOpacity, View, ViewStyle, Text } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { Icon } from "../components"
 import { translate } from "../i18n"
-import { MainScreen } from "../screens"
+import { MainScreen, DetailScreen, PortalScreen, WalletScreen } from "../screens"
 
 import { colors, spacing, typography } from "../theme"
-import { AppStackParamList, AppStackScreenProps } from "./AppNavigator"
+import { createNativeStackNavigator, NativeStackScreenProps } from "@react-navigation/native-stack"
 
 export type TabBarParamList = {
   MainScreen: undefined
+  DetailScreen: undefined
+  PortalScreen: undefined
+  WalletScreen: undefined
   Main: undefined
 }
 
@@ -25,12 +28,133 @@ export type TabBarScreenProps<T extends keyof TabBarParamList> = CompositeScreen
   AppStackScreenProps<keyof AppStackParamList>
 >
 
+export type AppStackParamList = {
+  // 🔥 Your screens go here
+  Main: undefined
+  MainScreen: undefined
+  DetailScreen: undefined
+  PortalScreen: undefined
+  WalletScreen: undefined
+  // IGNITE_GENERATOR_ANCHOR_APP_STACK_PARAM_LIST
+}
+
+export type AppStackScreenProps<T extends keyof AppStackParamList> = NativeStackScreenProps<
+  AppStackParamList,
+  T
+>
+
+// Documentation: https://reactnavigation.org/docs/stack-navigator/
+const Stack = createNativeStackNavigator<AppStackParamList>()
+
+const MainStack = () => {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false, navigationBarColor: colors.background }}>
+      <Stack.Screen name="MainScreen" component={MainScreen} />
+      <Stack.Screen name="DetailScreen" component={DetailScreen} />
+    </Stack.Navigator>
+  )
+}
+
+const CustomTabBar = ({ state, descriptors, navigation }: any) => {
+  return (
+    <View
+      style={{
+        flexDirection: "row",
+        borderTopRightRadius: 25,
+        borderTopLeftRadius: 25,
+        shadowColor: "#000",
+        shadowOffset: {
+          width: 0,
+          height: 5,
+        },
+        shadowOpacity: 0.5,
+        shadowRadius: 4.65,
+        backgroundColor: "white",
+        elevation: 7,
+        justifyContent: "center",
+        paddingVertical: 10,
+      }}
+    >
+      {state.routes.map(
+        (
+          route: { key: string | number; name: any; params: any },
+          index: { toString: () => React.Key | null | undefined },
+        ) => {
+          const { options } = descriptors[route.key]
+          const label =
+            options.tabBarLabel !== undefined
+              ? options.tabBarLabel
+              : options.title !== undefined
+              ? options.title
+              : route.name
+
+          const isFocused = state.index === index
+          const TabIcon = options.tabBarIcon
+
+          const onPress = () => {
+            const event = navigation.emit({
+              type: "tabPress",
+              target: route.key,
+              canPreventDefault: true,
+            })
+
+            if (!isFocused && !event.defaultPrevented) {
+              navigation.navigate(route.name, route.params)
+            }
+          }
+
+          const onLongPress = () => {
+            navigation.emit({
+              type: "tabLongPress",
+              target: route.key,
+            })
+          }
+
+          if (route.name === "PortalScreen") {
+            return (
+              <View
+                style={{
+                  flex: 1,
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+                key={index.toString()}
+              >
+                <Icon
+                  icon="portal"
+                  size={80}
+                  style={{ top: -50, position: "absolute", alignSelf: "center" }}
+                />
+              </View>
+            )
+          }
+
+          return (
+            <TouchableOpacity
+              accessibilityRole="button"
+              accessibilityState={isFocused ? { selected: true } : {}}
+              accessibilityLabel={options.tabBarAccessibilityLabel}
+              testID={options.tabBarTestID}
+              onPress={onPress}
+              onLongPress={onLongPress}
+              style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+              key={index.toString()}
+            >
+              <TabIcon focused={isFocused} />
+              <Text style={[$tabBarLabel, { color: isFocused ? colors.text : "#222" }]}>
+                {label}
+              </Text>
+            </TouchableOpacity>
+          )
+        },
+      )}
+    </View>
+  )
+}
+
 const Tab = createBottomTabNavigator<TabBarParamList>()
 
 /**
- * This is the main navigator for the demo screens with a bottom tab bar.
- * Each tab is a stack navigator with its own set of screens.
- *
  * More info: https://reactnavigation.org/docs/bottom-tab-navigator/
  * @returns {JSX.Element} The rendered `TabBarNavigator`.
  */
@@ -39,6 +163,7 @@ export function TabBarNavigator() {
 
   return (
     <Tab.Navigator
+      initialRouteName="Main"
       screenOptions={{
         headerShown: false,
         tabBarHideOnKeyboard: true,
@@ -48,20 +173,38 @@ export function TabBarNavigator() {
         tabBarLabelStyle: $tabBarLabel,
         tabBarItemStyle: $tabBarItem,
       }}
+      tabBar={(props) => <CustomTabBar {...props} />}
     >
-
       <Tab.Screen
-        name="MainScreen"
-        component={MainScreen}
+        name="Main"
+        component={MainStack}
         options={{
           tabBarLabel: translate("tabBarNavigator.discover"),
           tabBarIcon: ({ focused }) => (
-            <Icon icon="menu" color={focused ? colors.tint : undefined} size={30} />
+            <Icon icon="discover" color={focused ? colors.black : colors.border} size={30} />
           ),
         }}
       />
-
-      
+      <Tab.Screen
+        name="PortalScreen"
+        component={PortalScreen}
+        options={{
+          tabBarLabel: translate("tabBarNavigator.discover"),
+          tabBarIcon: ({ focused }) => (
+            <Icon icon="discover" color={focused ? colors.black : colors.border} size={30} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="WalletScreen"
+        component={WalletScreen}
+        options={{
+          tabBarLabel: translate("tabBarNavigator.wallet"),
+          tabBarIcon: ({ focused }) => (
+            <Icon icon="star" color={focused ? colors.black : colors.border} size={30} />
+          ),
+        }}
+      />
     </Tab.Navigator>
   )
 }

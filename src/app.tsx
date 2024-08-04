@@ -43,6 +43,9 @@ const config = {
         MainScreen: {
           path: "showroom/:queryIndex?/:itemIndex?",
         },
+        DetailScreen: "detail",
+        PortalScreen: "portal",
+        WalletScreen: "wallet",
       },
     },
   },

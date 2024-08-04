@@ -31,12 +31,7 @@ import { TabBarNavigator } from "./TabNavigator"
  *   https://reactnavigation.org/docs/typescript#type-checking-the-navigator
  *   https://reactnavigation.org/docs/typescript/#organizing-types
  */
-export type AppStackParamList = {
-  Welcome: undefined
-  // 🔥 Your screens go here
-  Main: undefined
-	// IGNITE_GENERATOR_ANCHOR_APP_STACK_PARAM_LIST
-}
+
 
 /**
  * This is a list of all the route names that will exit the app if the back button
@@ -44,23 +39,6 @@ export type AppStackParamList = {
  */
 const exitRoutes = Config.exitRoutes
 
-export type AppStackScreenProps<T extends keyof AppStackParamList> = NativeStackScreenProps<
-  AppStackParamList,
-  T
->
-
-// Documentation: https://reactnavigation.org/docs/stack-navigator/
-const Stack = createNativeStackNavigator<AppStackParamList>()
-
-const AppStack = observer(function AppStack() {
-  return (
-    <Stack.Navigator
-      screenOptions={{ headerShown: false, navigationBarColor: colors.background }}
-    >
-      <Stack.Screen name="Main" component={TabBarNavigator} />
-    </Stack.Navigator>
-  )
-})
 
 export interface NavigationProps
   extends Partial<React.ComponentProps<typeof NavigationContainer>> {}
@@ -76,7 +54,7 @@ export const AppNavigator = observer(function AppNavigator(props: NavigationProp
       theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
       {...props}
     >
-      <AppStack />
+      <TabBarNavigator />
     </NavigationContainer>
   )
 })

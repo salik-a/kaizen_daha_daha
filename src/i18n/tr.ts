@@ -19,7 +19,7 @@ const tr = {
   },
   tabBarNavigator: {
     discover: "KEŞFET",
-    wallet: "Daha Cüzdan"
+    wallet: "DAHA CÜZDAN",
   },
 }
 
