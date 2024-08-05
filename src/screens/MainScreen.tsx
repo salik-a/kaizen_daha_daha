@@ -55,7 +55,8 @@ const MainScreen: FC<MainScreenProps> = () => {
       </Screen>
     )
   }
-
+  console.log(tagListError)
+  console.log(promotionsError)
   if (tagListError || promotionsError) {
     return (
       <Screen

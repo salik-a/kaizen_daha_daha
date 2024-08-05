@@ -63,7 +63,7 @@ const exitRoutes = Config.exitRoutes
 export interface NavigationProps
   extends Partial<React.ComponentProps<typeof NavigationContainer>> {}
 
-export const AppNavigator = observer(function AppNavigator(props: NavigationProps) {
+export const AppNavigator = (props: NavigationProps) => {
   const colorScheme = useColorScheme()
 
   useBackButtonHandler((routeName) => exitRoutes.includes(routeName))
@@ -77,4 +77,4 @@ export const AppNavigator = observer(function AppNavigator(props: NavigationProp
       <MainStack />
     </NavigationContainer>
   )
-})
+}

@@ -7,10 +7,9 @@ import { Platform, NativeModules } from "react-native"
 
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import { ArgType } from "reactotron-core-client"
-import { mst } from "reactotron-mst"
 
-import { clear } from "src/utils/storage"
-import { goBack, resetRoot, navigate } from "src/navigators/navigationUtilities"
+import { clear } from "../utils/storage"
+import { goBack, resetRoot, navigate } from "../navigators/navigationUtilities"
 
 import { Reactotron } from "./ReactotronClient"
 
@@ -20,12 +19,7 @@ const reactotron = Reactotron.configure({
     /** since this file gets hot reloaded, let's clear the past logs every time we connect */
     Reactotron.clear()
   },
-}).use(
-  mst({
-    /* ignore some chatty `mobx-state-tree` actions */
-    filter: (event) => /postProcessSnapshot|@APPLY_SNAPSHOT/.test(event.name) === false,
-  }),
-)
+})
 
 if (Platform.OS !== "web") {
   reactotron.setAsyncStorageHandler?.(AsyncStorage)

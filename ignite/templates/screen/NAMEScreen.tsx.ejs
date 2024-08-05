@@ -21,7 +21,8 @@ import { Screen, Text } from "src/components"
 
 interface <%= props.pascalCaseName %>ScreenProps extends AppStackScreenProps<"<%= props.pascalCaseName %>"> {}
 
-export const <%= props.pascalCaseName %>Screen: FC<<%= props.pascalCaseName %>ScreenProps> = observer(function <%= props.pascalCaseName %>Screen() {
+export const <%= props.pascalCaseName %>Screen: FC<<%= props.pascalCaseName %>ScreenProps> = (props: <%=
+      props.pascalCaseName %>Screen()) {
   // Pull in one of our MST stores
   // const { someStore, anotherStore } = useStores()
 
